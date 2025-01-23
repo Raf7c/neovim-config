@@ -18,7 +18,10 @@ vim.opt.rtp:prepend(lazypath)
 -- Configure lazy.nvim
 require("lazy").setup {
   spec = {
+    { import = "plugins" },
+    { import = "plugins.ui"},
   },
+  install = { missing = true, colorscheme = { "catppuccin" } },
 }
 vim.keymap.set("n", "<leader>z", "<cmd>:Lazy<cr>", { desc = "Plugin Manager" })
 
