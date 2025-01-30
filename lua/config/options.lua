@@ -10,7 +10,7 @@ function opts.init()
 	opt.confirm = true
 
 	-- Mouse & Clipboard
-	opt.clipboard:append("unnamedplus") -- Systeme
+	opt.clipboard = ("unnamedplus") -- Systeme
 	opt.mouse = "a"
 
 	-- Display & UI
@@ -18,7 +18,7 @@ function opts.init()
 	opt.cursorline = true
 	opt.wrap = false
 	opt.signcolumn = "yes"
-	opt.winbar = "" 
+	pcall(function() opt.winbar = "" end)
 
 	-- Indentation & Formatting
 	opt.smartindent = true  
@@ -27,7 +27,7 @@ function opts.init()
 
 	-- Characters & Spacing
 	opt.list = true
-	opt.listchars:append("eol:↴")
+	opt.listchars = ("eol:↴")
 
 	-- Window management & Splits
 	opt.splitbelow = true 
