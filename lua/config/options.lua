@@ -2,6 +2,7 @@ local opts = {}
 local opt = vim.opt
 
 function opts.init()
+	vim.opt.modifiable = true --
 	-- Files & Encoding
 	opt.fileencoding = "utf-8"
 	opt.encoding = "utf-8"
