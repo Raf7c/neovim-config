@@ -21,6 +21,7 @@ require("lazy").setup {
     { import = "plugins"},
     { import = "plugins.ui"},
   },
+  defaults = { lazy = true, version = nil },
   install = { missing = true, colorscheme = { "catppuccin" } },
 }
 vim.keymap.set("n", "<leader>z", "<cmd>:Lazy<cr>", { desc = "Plugin Manager" })

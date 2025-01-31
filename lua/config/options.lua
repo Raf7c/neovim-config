@@ -2,7 +2,7 @@ local opts = {}
 local opt = vim.opt
 
 function opts.init()
-	vim.opt.modifiable = true --
+	opt.modifiable = true
 	-- Files & Encoding
 	opt.fileencoding = "utf-8"
 	opt.encoding = "utf-8"
@@ -19,7 +19,7 @@ function opts.init()
 	opt.cursorline = true
 	opt.wrap = false
 	opt.signcolumn = "yes"
-	pcall(function() opt.winbar = "" end)
+	opt.winbar = ""
 
 	-- Indentation & Formatting
 	opt.smartindent = true  
@@ -28,7 +28,7 @@ function opts.init()
 
 	-- Characters & Spacing
 	opt.list = true
-	opt.listchars = ("eol:↴")
+	opt.listchars:append("eol:↴")
 
 	-- Window management & Splits
 	opt.splitbelow = true 
