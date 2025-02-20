@@ -1,1 +1,5 @@
-return {}
+return {
+	pde = {
+		lua = true,
+	},
+}
