@@ -7,7 +7,7 @@ function opts.init()
 	opt.fileencoding = "utf-8"
 	opt.encoding = "utf-8"
 	opt.autowrite = true
-	opt.autoread = true 
+	opt.autoread = true
 	opt.confirm = true
 
 	-- Mouse & Clipboard
@@ -15,14 +15,14 @@ function opts.init()
 	opt.mouse = "a"
 
 	-- Display & UI
-	opt.number = true 
+	opt.number = true
 	opt.cursorline = true
 	opt.wrap = false
 	opt.signcolumn = "yes"
 	opt.winbar = ""
 
 	-- Indentation & Formatting
-	opt.smartindent = true  
+	opt.smartindent = true
 	opt.tabstop = 2
 	opt.shiftwidth = 2
 
