@@ -9,6 +9,7 @@ function opts.init()
 	opt.autowrite = true
 	opt.autoread = true
 	opt.confirm = true
+	opt.termguicolors = true
 
 	-- Mouse & Clipboard
 	opt.clipboard = ("unnamedplus") -- Systeme
