@@ -14,6 +14,14 @@ return {
 			format = {
 				timeout_ms = 3000,
 			},
+			-- Configuration des inlay hints pour Neovim 0.10+
+			inlay_hints = {
+				enabled = true,
+			},
+			-- Support du folding sémantique
+			semantic_tokens = {
+				enabled = true,
+			},
 		},
 		config = function(plugin, opts)
 			require("plugins.lsp.servers").setup(plugin, opts)
@@ -27,6 +35,14 @@ return {
 		opts = {
 			ensure_installed = {
 				"shfmt",
+			},
+			ui = {
+				border = "rounded",
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
 			},
 		},
 		config = function(_, opts)
@@ -50,6 +66,15 @@ return {
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		cmd = { "TroubleToggle", "Trouble" },
+		keys = {
+			{ "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics" },
+			{ "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics" },
+		},
+		opts = {
+			auto_open = false,
+			auto_close = true,
+			use_diagnostic_signs = true,
+		},
 	},
 }
-

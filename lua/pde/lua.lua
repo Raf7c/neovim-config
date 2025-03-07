@@ -29,6 +29,11 @@ return {
               telemetry = { enable = false },
               hint = {
                 enable = false,
+                arrayIndex = "Enable",
+                setType = true,
+                paramName = "All",
+                paramType = true,
+                semicolon = "All",
               },
             },
           },

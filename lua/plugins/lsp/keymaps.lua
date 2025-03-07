@@ -12,7 +12,7 @@ function M.on_attach(client, buffer)
 	self:map("K", vim.lsp.buf.hover, { desc = "Hover" })
 	self:map("gK", vim.lsp.buf.signature_help, { desc = "Signature Help", has = "signatureHelp" })
 
-	-- Diagnostics
+	-- Diagnostic amélioré pour Neovim 0.10+
 	self:map("]d", M.diagnostic_goto(true), { desc = "Next Diagnostic" })
 	self:map("[d", M.diagnostic_goto(false), { desc = "Prev Diagnostic" })
 	self:map("]e", M.diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
@@ -28,16 +28,24 @@ function M.on_attach(client, buffer)
 	self:map("<leader>lf", format, { desc = "Format Document", has = "documentFormatting" })
 	self:map("<leader>lf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
 
-	-- Renommage
+	-- Renommage (utilise l'API améliorée de Neovim 0.10)
 	self:map("<leader>lr", vim.lsp.buf.rename, { desc = "Rename", has = "rename" })
 
-	-- Symboles - supprimés car dépendant de Telescope
-	-- Remplacé par liste de symboles native si nécessaire
+	-- Symboles
 	self:map("<leader>ls", vim.lsp.buf.document_symbol, { desc = "Document Symbols" })
 	self:map("<leader>lS", vim.lsp.buf.workspace_symbol, { desc = "Workspace Symbols" })
 
 	-- Toggle diagnostics
-	self:map("<leader>lw", require("plugins.lsp.utils").toggle_diagnostics, { desc = "Toggle Inline Diagnostics" })
+	self:map("<leader>ld", require("plugins.lsp.utils").toggle_diagnostics, { desc = "Toggle Inline Diagnostics" })
+	
+	-- Toggle inlay hints (Neovim 0.10+)
+	self:map("<leader>li", require("plugins.lsp.utils").toggle_inlay_hints, { desc = "Toggle Inlay Hints" })
+	
+	-- Nouvelles fonctionnalités Neovim 0.10+
+	if vim.lsp.codelens then
+		self:map("<leader>ll", vim.lsp.codelens.run, { desc = "Run CodeLens" })
+		self:map("<leader>lL", vim.lsp.codelens.refresh, { desc = "Refresh CodeLens" })
+	end
 end
 
 function M.new(client, buffer)

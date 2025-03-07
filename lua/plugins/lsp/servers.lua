@@ -23,17 +23,14 @@ local function lsp_init()
     },
 
     diagnostic = {
+      -- Configuration améliorée pour Neovim 0.10
       virtual_text = {
         severity = {
           min = vim.diagnostic.severity.ERROR,
         },
+        source = "if_many",
+        prefix = "●",
       },
-      signs = {
-        active = signs,
-      },
-      underline = false,
-      update_in_insert = false,
-      severity_sort = true,
       float = {
         focusable = true,
         style = "minimal",
@@ -41,18 +38,66 @@ local function lsp_init()
         source = "always",
         header = "",
         prefix = "",
+        format = function(d)
+          local code = d.code or (d.user_data and d.user_data.lsp and d.user_data.lsp.code)
+          if code then
+            return string.format("%s [%s]", d.message, code):gsub("1. ", "")
+          end
+          return d.message
+        end,
       },
+      signs = {
+        active = signs,
+      },
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
     },
   }
 
   -- Diagnostic configuration
   vim.diagnostic.config(config.diagnostic)
+
+  -- Configuration des fenêtres flottantes
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    config.float
+  )
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    config.float
+  )
 end
 
 function M.setup(_, opts)
   lsp_utils.on_attach(function(client, bufnr)
+    -- Configuration du formatage
     require("plugins.lsp.format").on_attach(client, bufnr)
+    
+    -- Configuration des keymaps
     require("plugins.lsp.keymaps").on_attach(client, bufnr)
+    
+    -- Configuration des inlay hints (Neovim 0.10+)
+    if client.server_capabilities.inlayHintProvider and opts.inlay_hints and opts.inlay_hints.enabled then
+      -- Assurons-nous que la valeur est bien un booléen
+      local should_enable = opts.inlay_hints.enabled == true
+      pcall(vim.lsp.inlay_hint.enable, bufnr, should_enable)
+    end
+    
+    -- Configuration de CodeLens (Neovim 0.10+)
+    if client.server_capabilities.codeLensProvider then
+      vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+        buffer = bufnr,
+        callback = function()
+          pcall(vim.lsp.codelens.refresh)
+        end,
+      })
+    end
+    
+    -- Configuration de Semantic Tokens (Neovim 0.10+)
+    if client.server_capabilities.semanticTokensProvider and opts.semantic_tokens and opts.semantic_tokens.enabled then
+      client.server_capabilities.semanticTokensProvider = opts.semantic_tokens.enabled
+    end
   end)
 
   lsp_init() -- diagnostics, handlers
