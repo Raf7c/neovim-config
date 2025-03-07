@@ -15,8 +15,10 @@ return {
 				{ "<leader>g", group = "git" },
 				{ "<leader>s", group = "search" },
 				{ "<leader>w", group = "Window" },
-
-				--{ "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
+				{ "gs",        group = "surround" },
+				{ "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
+				{ "<leader>s", group = "search" },
+        { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
 			},
 		},
 	},
