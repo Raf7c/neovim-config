@@ -23,13 +23,14 @@ function keymaps.init()
 	keymap.set("n", "<leader>wv", "<C-W>v", { desc = "Split window right", silent = true })
 
 	-- Tab management
-	keymap.set("n", "<leader>tt", "<CMD>tabnew<CR>", { desc = "New Tab", silent = true })
-	keymap.set("n", "<leader>td", "<CMD>tabclose<CR>", { desc = "Close Tab", silent = true })
-	keymap.set("n", "<leader>tn", "<CMD>tabnext<CR>", { desc = "Next tab", silent = true })
-  	keymap.set("n", "<leader>tp", "<CMD>tabprev<CR>", { desc = "Prev tab", silent = true })
+	keymap.set("n", "<leader><tab>n", "<CMD>tabnew<CR>", { desc = "New Tab", silent = true })
+	keymap.set("n", "<leader><tab>d", "<CMD>tabclose<CR>", { desc = "Close Tab", silent = true })
+	keymap.set("n", "<leader><tab>n", "<CMD>tabnext<CR>", { desc = "Next tab", silent = true })
+	keymap.set("n", "<leader><tab>p", "<CMD>tabprev<CR>", { desc = "Prev tab", silent = true })
 
-	 -- Move lines
-	 keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line up", silent = true })
-	 keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line down", silent = true })
+	-- Move lines
+	keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line up", silent = true })
+	keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line down", silent = true })
 end
+
 return keymaps
