@@ -21,30 +21,30 @@ function M.on_attach(client, buffer)
 	self:map("[w", M.diagnostic_goto(false, "WARNING"), { desc = "Prev Warning" })
 
 	-- Actions
-	self:map("<leader>la", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
+	self:map("<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
 
 	-- Formatage
 	local format = require("plugins.lsp.format").format
-	self:map("<leader>lf", format, { desc = "Format Document", has = "documentFormatting" })
-	self:map("<leader>lf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
+	self:map("<leader>cf", format, { desc = "Format Document", has = "documentFormatting" })
+	self:map("<leader>cf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
 
 	-- Renommage (utilise l'API améliorée de Neovim 0.10)
-	self:map("<leader>lr", vim.lsp.buf.rename, { desc = "Rename", has = "rename" })
+	self:map("<leader>cr", vim.lsp.buf.rename, { desc = "Rename", has = "rename" })
 
 	-- Symboles
-	self:map("<leader>ls", vim.lsp.buf.document_symbol, { desc = "Document Symbols" })
-	self:map("<leader>lS", vim.lsp.buf.workspace_symbol, { desc = "Workspace Symbols" })
+	self:map("<leader>cs", vim.lsp.buf.document_symbol, { desc = "Document Symbols" })
+	self:map("<leader>cS", vim.lsp.buf.workspace_symbol, { desc = "Workspace Symbols" })
 
 	-- Toggle diagnostics
-	self:map("<leader>ld", require("plugins.lsp.utils").toggle_diagnostics, { desc = "Toggle Inline Diagnostics" })
+	self:map("<leader>cd", require("plugins.lsp.utils").toggle_diagnostics, { desc = "Toggle Inline Diagnostics" })
 	
 	-- Toggle inlay hints (Neovim 0.10+)
-	self:map("<leader>li", require("plugins.lsp.utils").toggle_inlay_hints, { desc = "Toggle Inlay Hints" })
+	self:map("<leader>ci", require("plugins.lsp.utils").toggle_inlay_hints, { desc = "Toggle Inlay Hints" })
 	
 	-- Nouvelles fonctionnalités Neovim 0.10+
 	if vim.lsp.codelens then
-		self:map("<leader>ll", vim.lsp.codelens.run, { desc = "Run CodeLens" })
-		self:map("<leader>lL", vim.lsp.codelens.refresh, { desc = "Refresh CodeLens" })
+		self:map("<leader>cl", vim.lsp.codelens.run, { desc = "Run CodeLens" })
+		self:map("<leader>cL", vim.lsp.codelens.refresh, { desc = "Refresh CodeLens" })
 	end
 end
 
