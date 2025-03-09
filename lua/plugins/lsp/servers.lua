@@ -67,8 +67,8 @@ local function lsp_init()
     vim.lsp.handlers.signature_help,
     config.float
   )
-  
-  -- Fix LspInfo behavior to open in a floating window
+
+    -- Fix LspInfo behavior to open in a floating window
   -- instead of a new tab
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "lspinfo",

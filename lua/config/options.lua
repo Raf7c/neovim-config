@@ -32,7 +32,7 @@ function opts.init()
 	opt.listchars:append("eol:↴")
 
 	-- Window management & Splits
-	opt.splitbelow = true 
+	opt.splitbelow = true
 	opt.splitright = true
 end
 return opts
