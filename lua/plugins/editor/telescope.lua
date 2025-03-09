@@ -5,9 +5,6 @@ return {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"nvim-telescope/telescope-file-browser.nvim",
 			"nvim-telescope/telescope-project.nvim",
-			"ahmedkhalf/project.nvim",
-			"cljoly/telescope-repo.nvim",
-			"stevearc/aerial.nvim",
 		},
 		cmd = "Telescope",
 		keys = {
@@ -73,21 +70,6 @@ return {
 			telescope.load_extension "fzf"
 			telescope.load_extension "file_browser"
 			telescope.load_extension "project"
-			telescope.load_extension "projects"
-			telescope.load_extension "aerial"
-		end,
-	},
-	{
-		"stevearc/aerial.nvim",
-		config = true,
-	},
-	{
-		"ahmedkhalf/project.nvim",
-		config = function()
-			require("project_nvim").setup {
-				detection_methods = { "pattern", "lsp" },
-				patterns = { ".git" },
-			}
 		end,
 	},
 }
