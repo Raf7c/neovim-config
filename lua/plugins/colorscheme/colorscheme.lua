@@ -11,7 +11,7 @@ return {
 			term_colors = true,
 			integrations = {
 				cmp = true,
-				nvimtree = true,
+				neotree = true,
 				telescope = true,
 				notify = true,
 				mini = true,
