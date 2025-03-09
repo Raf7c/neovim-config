@@ -5,6 +5,7 @@ return {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"nvim-telescope/telescope-file-browser.nvim",
 			"nvim-telescope/telescope-project.nvim",
+			"nvim-telescope/telescope-ui-select.nvim",
 		},
 		cmd = "Telescope",
 		keys = {
@@ -64,12 +65,16 @@ return {
 						hidden_files = false,
 						theme = "dropdown",
 					},
+					["ui-select"] = {
+						theme = "dropdown",
+					},
 				},
 			}
 			telescope.setup(opts)
 			telescope.load_extension "fzf"
 			telescope.load_extension "file_browser"
 			telescope.load_extension "project"
+			telescope.load_extension "ui-select"
 		end,
 	},
 }
