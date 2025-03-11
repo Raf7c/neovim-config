@@ -1,7 +1,6 @@
 if not require("config").pde.lua then
   return {}
 end
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -29,11 +28,6 @@ return {
               telemetry = { enable = false },
               hint = {
                 enable = false,
-                arrayIndex = "Enable",
-                setType = true,
-                paramName = "All",
-                paramType = true,
-                semicolon = "All",
               },
             },
           },
@@ -43,7 +37,11 @@ return {
         lua_ls = function(_, _)
           local lsp_utils = require "plugins.lsp.utils"
           lsp_utils.on_attach(function(client, buffer)
-            -- Configuration spécifique pour lua_ls si nécessaire
+            -- stylua: ignore
+            if client.name == "lua_ls" then
+              vim.keymap.set("n", "<leader>dX", function() require("osv").run_this() end, { buffer = buffer, desc = "OSV Run" })
+              vim.keymap.set("n", "<leader>dL", function() require("osv").launch({ port = 8086 }) end, { buffer = buffer, desc = "OSV Launch" })
+            end
           end)
         end,
       },
