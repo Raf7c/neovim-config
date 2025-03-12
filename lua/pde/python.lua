@@ -56,4 +56,31 @@ return {
             return opts
         end,
     },
+    {
+        "mfussenegger/nvim-dap",
+        dependencies = {
+            "mfussenegger/nvim-dap-python",
+            -- "rcarriga/nvim-dap-ui",
+        },
+        opts = {
+            setup = {
+                python = function(_, _)
+                    local path = require("mason-registry").get_package("debugpy"):get_install_path()
+                    require("dap-python").setup(path .. "/venv/bin/python")
+                    
+                    -- Configurations spécifiques pour les tests Python
+                    local test_runners = require("dap-python").test_runners
+                    test_runners.pytest = {
+                        command = "pytest",
+                        args = { "-v" },
+                    }
+                    
+                    -- Raccourcis clavier spécifiques à Python pour le débogage
+                    vim.keymap.set("n", "<leader>dPt", function() require("dap-python").test_method() end, { desc = "Debug Python Test Method" })
+                    vim.keymap.set("n", "<leader>dPc", function() require("dap-python").test_class() end, { desc = "Debug Python Test Class" })
+                    vim.keymap.set("n", "<leader>dPs", function() require("dap-python").debug_selection() end, { desc = "Debug Python Selection" })
+                end,
+            },
+        },
+    },
 }
