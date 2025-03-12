@@ -9,12 +9,32 @@ return {
 		opts = {
 			servers = {
 				dockerls = {},
+				lua_ls = {
+					settings = {
+						Lua = {
+							diagnostics = {
+								globals = { "vim" }, 
+							},
+							workspace = {
+								library = {
+									vim.fn.expand("$VIMRUNTIME/lua"),
+									vim.fn.stdpath("config") .. "/lua",
+								},
+								checkThirdParty = false,
+							},
+							telemetry = { enable = false },
+							completion = {
+								callSnippet = "Replace",
+							},
+						},
+					},
+				},
 			},
 			setup = {},
 			format = {
 				timeout_ms = 3000,
 			},
-			-- Configuration des inlay hints pour Neovim 0.10+
+			-- Inlay hints pour Neovim 0.10+
 			inlay_hints = {
 				enabled = true,
 			},
@@ -34,7 +54,8 @@ return {
 		keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
 		opts = {
 			ensure_installed = {
-				"shfmt",
+				"shfmt",    -- Formate for Shell
+				"stylua",   -- Formate for Lua
 			},
 			ui = {
 				border = "rounded",
@@ -77,4 +98,6 @@ return {
 			use_diagnostic_signs = true,
 		},
 	},
+	-- Import none-ls.lua
+	require("plugins.lsp.none-ls"),
 }

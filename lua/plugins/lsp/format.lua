@@ -2,7 +2,7 @@ local M = {}
 
 M.autoformat = true
 M.format_notify = false
-M.timeout_ms = 3000 -- Paramétré pour être configurable
+M.timeout_ms = 3000 
 
 function M.toggle()
   M.autoformat = not M.autoformat
@@ -15,7 +15,7 @@ function M.format(opts)
   local buf = opts.buf or vim.api.nvim_get_current_buf()
   local timeout_ms = opts.timeout_ms or M.timeout_ms
   
-  -- Utilisation de l'API de formatage de Neovim 0.10
+  -- Using the Neovim 0.10 formatting API
   local clients = vim.lsp.get_active_clients({ bufnr = buf })
   local client_ids = {}
   
@@ -32,7 +32,7 @@ function M.format(opts)
     return
   end
 
-  -- Formatage du buffer avec les clients LSP disponibles
+  -- Buffer formatting with available LSP clients
   vim.lsp.buf.format({
     bufnr = buf,
     filter = function(client)
@@ -51,7 +51,7 @@ function M.format_range(start_line, end_line, opts)
   local buf = opts.buf or vim.api.nvim_get_current_buf()
   local timeout_ms = opts.timeout_ms or M.timeout_ms
   
-  -- Formatage d'une plage spécifique
+  -- Formatting a specific range
   vim.lsp.buf.format({
     bufnr = buf,
     range = {
@@ -86,11 +86,11 @@ function M.get_formatters(bufnr)
 end
 
 function M.on_attach(client, bufnr)
-  -- Crée un augroup unique pour ce buffer
+  -- Create a unique augroup for this buffer
   local augroup_name = "LspFormat." .. bufnr
   local group = vim.api.nvim_create_augroup(augroup_name, {})
   
-  -- Configuration du formatage automatique sur sauvegarde
+  -- Configuring automatic formatting on backup
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = group,
     buffer = bufnr,
@@ -101,7 +101,7 @@ function M.on_attach(client, bufnr)
     end,
   })
   
-  -- Nettoyage de l'augroup lorsque le buffer est fermé
+  -- Cleaning the augroup when the buffer is closed
   vim.api.nvim_create_autocmd("BufDelete", {
     group = group,
     buffer = bufnr,
