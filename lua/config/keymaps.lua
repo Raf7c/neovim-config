@@ -25,7 +25,7 @@ function keymaps.init()
 	-- Tab management
 	keymap.set("n", "<leader><tab>n", "<CMD>tabnew<CR>", { desc = "New Tab", silent = true })
 	keymap.set("n", "<leader><tab>d", "<CMD>tabclose<CR>", { desc = "Close Tab", silent = true })
-	keymap.set("n", "<leader><tab>n", "<CMD>tabnext<CR>", { desc = "Next tab", silent = true })
+	keymap.set("n", "<leader><tab>x", "<CMD>tabnext<CR>", { desc = "Next tab", silent = true })
 	keymap.set("n", "<leader><tab>p", "<CMD>tabprev<CR>", { desc = "Prev tab", silent = true })
 
 	-- Move lines
