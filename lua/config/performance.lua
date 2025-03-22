@@ -4,7 +4,7 @@ local M = {}
 function M.init()
   -- Disable diagnostics in insert mode
   vim.diagnostic.config({
-    update_in_insert = false,
+    update_in_insert = true,
     severity_sort = true,
     underline = true,
     virtual_text = {
@@ -62,16 +62,6 @@ function M.init()
     }
   )
 
-  -- Configure document caching for LSP
-  local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-  function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-    opts = opts or {}
-    opts.border = opts.border or "rounded"
-    opts.max_width = opts.max_width or math.min(120, vim.o.columns * 0.8)
-    opts.max_height = opts.max_height or math.min(30, vim.o.lines * 0.6)
-    return orig_util_open_floating_preview(contents, syntax, opts, ...)
-  end
-
   -- Optimize refresh events
   vim.api.nvim_create_autocmd("TextChangedI", {
     pattern = "*",
@@ -117,4 +107,4 @@ function M.init()
   })
 end
 
-return M 
+return M
