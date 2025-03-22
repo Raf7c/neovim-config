@@ -23,6 +23,7 @@ function opts.init()
 	-- Mouse & Clipboard
 	opt.clipboard = "unnamedplus" -- System
 	opt.mouse = "a"
+	opt.mousescroll = "ver:3,hor:0" -- Disable horizontal
 
 	-- Display & UI
 	opt.number = true
@@ -33,6 +34,7 @@ function opts.init()
 	opt.laststatus = 3  -- Global statusline
 	opt.scrolloff = 8   -- Keep 8 lines visible when scrolling
 	opt.sidescrolloff = 8
+	opt.smoothscroll = true
 
 	-- Indentation & Formatting
 	opt.smartindent = true
@@ -49,6 +51,7 @@ function opts.init()
 	-- Completion
 	opt.completeopt = "menuone,noselect"
 	opt.pumheight = 10
+	opt.pumheight = 10 
 
 	-- Characters & Spacing
 	opt.list = true
